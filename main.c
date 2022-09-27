@@ -36,7 +36,7 @@ int main(void){
 	DIO_Init();
 	ADC_voidInit();
 	LCD_voidInit();
-	//------------------------------------------Password-------------------------------------------------------
+//-------------------------------------------------Password-------------------------------------------------------
 		//TMR_voidTMR1SetCompareMatchChannelA(1999);
 		//  void APP_LOGIN(void)
 
@@ -149,7 +149,7 @@ int main(void){
 						GINT_voidGINTEnable();
 						// Initiate TMR1
 						TMR_voidTMR1Init();
-						//--------------------Opens the door-----------------
+//------------------------------------------------Opens the door--------------------------------------------------
 						for(u16 i = 999 ; i <=1499 ; i++)
 							{
 							  TMR_voidTMR1SetCompareMatchChannelA(i);
@@ -247,6 +247,8 @@ int main(void){
 return 0;
 }
 
+
+// Function to toggle led used previously when used pointer to function in timer0 and timer1
 void APP_voidFlagLED(void){
 	static u8 Local_u8_Flag = 0;
 	if(Local_u8_Flag == 0){

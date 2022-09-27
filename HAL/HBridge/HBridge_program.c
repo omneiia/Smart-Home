@@ -21,7 +21,7 @@
 #include "../../MCAL/DIO/DIO_interface.h"
 
 HBRD_ErrorStatus HBRD_enuRotate(u8 Copy_u8Direction){
-	u8 Local_u8ErrorStatus = HBRD_OK;
+	u8 Local_enuErrorStatus = HBRD_OK;
 	switch(Copy_u8Direction){
 	case HBRD_CLOCKWISE:
 		DIO_u8SetPinValue(HBRD_PORT, HBRD_PINA, DIO_u8_LOW);
@@ -32,10 +32,10 @@ HBRD_ErrorStatus HBRD_enuRotate(u8 Copy_u8Direction){
 		DIO_u8SetPinValue(HBRD_PORT, HBRD_PINB, DIO_u8_LOW);
 	break;
 	default:
-		Local_u8ErrorStatus = HBRD_NOK;
+		Local_enuErrorStatus = HBRD_NOK;
 	break;
 	}
-	return Local_u8ErrorStatus;
+	return Local_enuErrorStatus;
 }
 void HBRD_voidStop(void){
 	DIO_u8SetPinValue(HBRD_PORT, HBRD_PINA, DIO_u8_LOW);

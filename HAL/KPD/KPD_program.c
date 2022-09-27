@@ -26,7 +26,7 @@ u8 KPD_Au8RowPins[4]={KPD_u8_R1,KPD_u8_R2,KPD_u8_R3,KPD_u8_R4};
 u8 KPD_Au8ColumnPins[4]={KPD_u8_C1,KPD_u8_C2,KPD_u8_C3,KPD_u8_C4};
 
 KPD_ErrorStatus KPD_enuGetKey(u8 *Copy_pu8ReturnedKey){
-	u8 Local_enuErrorStatus = KPD_OK;
+	u8 Local_enuErrorState = KPD_OK;
 	u8 Local_u8RowsCounter, Local_u8ColumnsCounter, Local_u8ReturnedKey, Local_u8Flag = 0;
 	if(Copy_pu8ReturnedKey != NULL){
 
@@ -54,7 +54,7 @@ KPD_ErrorStatus KPD_enuGetKey(u8 *Copy_pu8ReturnedKey){
 			}
 		}
 	}else{
-		Local_enuErrorStatus = KPD_GetKeyReturnedError;
+		Local_enuErrorState = KPD_GetKeyReturnedError;
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }

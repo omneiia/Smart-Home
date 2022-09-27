@@ -19,7 +19,7 @@
 #include"EXTI_config.h"
 
 EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
-	u8 Local_ErrorStatus = EXTI_OK;
+	u8 Local_enuErrorState = EXTI_OK;
 	switch(Copy_EXTIIndex){
 	case EXTI_u8_INT0:
 		switch(Copy_EXTIEdge){
@@ -40,7 +40,7 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
 			  CLR_BIT(EXTI_u8_MCUCR_REG,1);
 		  break;
 		default:
-			Local_ErrorStatus = EXTI_INT0_NOK;
+			Local_enuErrorState = EXTI_INT0_NOK;
 		break;
 	}
 		//Enable PIE for INT0
@@ -65,7 +65,7 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
 				 CLR_BIT(EXTI_u8_MCUCR_REG,3);
 			break;
 			default:
-				Local_ErrorStatus = EXTI_INT1_NOK;
+				Local_enuErrorState = EXTI_INT1_NOK;
 			break;
 	}
 	//Enable PIE for INT1
@@ -80,21 +80,21 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
 				SET_BIT(EXTI_u8_MCUCR_REG,6);
 			break;
 			default:
-				Local_ErrorStatus = EXTI_INT2_NOK;
+				Local_enuErrorState = EXTI_INT2_NOK;
 			break;
 	 }
 	//Enable PIE for INT2
 	SET_BIT(EXTI_u8_GICR_REG,5);
 	break;
 	default:
-		Local_ErrorStatus = EXTI_INT_INDEX_NOK; // invalid index
+		Local_enuErrorState = EXTI_INT_INDEX_NOK; // invalid index
 	break;
 	}
-	return Local_ErrorStatus;
+	return Local_enuErrorState;
 }
 
 EXTI_ErrorStatus EXTI_enuDisable(u8 Copy_EXTIIndex){
-	u8 Local_ErrorStatus = EXTI_OK;
+	u8 Local_enuErrorState = EXTI_OK;
 	switch(Copy_EXTIIndex){
 	case EXTI_u8_INT0:
 		CLR_BIT(EXTI_u8_GICR_REG,6);
@@ -106,10 +106,10 @@ EXTI_ErrorStatus EXTI_enuDisable(u8 Copy_EXTIIndex){
 		CLR_BIT(EXTI_u8_GICR_REG,5);
 	break;
 	default:
-		Local_ErrorStatus = EXTI_DISABLE_INT_NOK;
+		Local_enuErrorState = EXTI_DISABLE_INT_NOK;
 	break;
 	}
-	return Local_ErrorStatus;
+	return Local_enuErrorState;
 }
 void (*EXTI_PerformINT)(void) = NULL;
 

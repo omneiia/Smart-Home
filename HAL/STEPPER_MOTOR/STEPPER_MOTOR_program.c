@@ -20,7 +20,7 @@
 #include "../../MCAL/DIO/DIO_interface.h"
 
 STP_ErrorStatus STP_enuRotate(u16 angle, u8 Copy_u8Direction){
-	u8 Local_u8ErrorStatus = STP_OK;
+	u8 Local_enuErrorState = STP_OK;
 	u32 numberOfSteps = (u32)((angle * 2050UL)/360);
 	numberOfSteps = numberOfSteps/4;
 	switch(Copy_u8Direction){
@@ -83,10 +83,10 @@ STP_ErrorStatus STP_enuRotate(u16 angle, u8 Copy_u8Direction){
 		}
 	break;
 	default:
-		Local_u8ErrorStatus = STP_NOK;
+		Local_enuErrorState = STP_NOK;
 	break;
 	}
-	return Local_u8ErrorStatus;
+	return Local_enuErrorState;
 }
 void STP_voidStop(void){
 

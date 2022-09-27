@@ -1735,7 +1735,7 @@ TWI_ErrorStatus   TWI_enuSendStartCondition(void)
      d32:	00 d0       	rcall	.+0      	; 0xd34 <TWI_enuSendStartCondition+0x6>
      d34:	cd b7       	in	r28, 0x3d	; 61
      d36:	de b7       	in	r29, 0x3e	; 62
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
      d38:	81 e0       	ldi	r24, 0x01	; 1
      d3a:	89 83       	std	Y+1, r24	; 0x01
 		/* Send Start Condition */
@@ -1765,7 +1765,7 @@ TWI_ErrorStatus   TWI_enuSendStartCondition(void)
 
 00000d60 <TWI_enuSendReStartCondition>:
 		}
-		return Local_enuErrorStatus;
+		return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuSendReStartCondition(void)
@@ -1775,7 +1775,7 @@ TWI_ErrorStatus   TWI_enuSendReStartCondition(void)
      d64:	00 d0       	rcall	.+0      	; 0xd66 <TWI_enuSendReStartCondition+0x6>
      d66:	cd b7       	in	r28, 0x3d	; 61
      d68:	de b7       	in	r29, 0x3e	; 62
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
      d6a:	81 e0       	ldi	r24, 0x01	; 1
      d6c:	89 83       	std	Y+1, r24	; 0x01
 	/* Send Start Condition */
@@ -1805,7 +1805,7 @@ TWI_ErrorStatus   TWI_enuSendReStartCondition(void)
 
 00000d92 <TWI_enuSendSlaveWithWrite>:
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuSendSlaveWithWrite(u8 Copy_u8SlaveAddress)
@@ -1817,7 +1817,7 @@ TWI_ErrorStatus   TWI_enuSendSlaveWithWrite(u8 Copy_u8SlaveAddress)
      d9a:	cd b7       	in	r28, 0x3d	; 61
      d9c:	de b7       	in	r29, 0x3e	; 62
      d9e:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
      da0:	81 e0       	ldi	r24, 0x01	; 1
      da2:	89 83       	std	Y+1, r24	; 0x01
 	/* Set TWDR = SLA + W */
@@ -1862,7 +1862,7 @@ TWI_ErrorStatus   TWI_enuSendSlaveWithWrite(u8 Copy_u8SlaveAddress)
 
 00000de0 <TWI_enuSendSlaveWithRead>:
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuSendSlaveWithRead(u8 Copy_u8SlaveAddress)
@@ -1874,7 +1874,7 @@ TWI_ErrorStatus   TWI_enuSendSlaveWithRead(u8 Copy_u8SlaveAddress)
      de8:	cd b7       	in	r28, 0x3d	; 61
      dea:	de b7       	in	r29, 0x3e	; 62
      dec:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
      dee:	81 e0       	ldi	r24, 0x01	; 1
      df0:	89 83       	std	Y+1, r24	; 0x01
 	/* Set TWDR = SLA + R */
@@ -1919,7 +1919,7 @@ TWI_ErrorStatus   TWI_enuSendSlaveWithRead(u8 Copy_u8SlaveAddress)
 
 00000e2e <TWI_enuSendDataByte>:
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus  TWI_enuSendDataByte(u8 Copy_u8SendData)
@@ -1931,7 +1931,7 @@ TWI_ErrorStatus  TWI_enuSendDataByte(u8 Copy_u8SendData)
      e36:	cd b7       	in	r28, 0x3d	; 61
      e38:	de b7       	in	r29, 0x3e	; 62
      e3a:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
      e3c:	81 e0       	ldi	r24, 0x01	; 1
      e3e:	89 83       	std	Y+1, r24	; 0x01
 	/* Set TWDR = DATA */
@@ -1958,7 +1958,7 @@ TWI_ErrorStatus  TWI_enuSendDataByte(u8 Copy_u8SendData)
 
 00000e5e <TWI_enuReceiveDataByte>:
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuReceiveDataByte(u8 *Copy_pu8ReceivedData)
@@ -1971,7 +1971,7 @@ TWI_ErrorStatus   TWI_enuReceiveDataByte(u8 *Copy_pu8ReceivedData)
      e68:	de b7       	in	r29, 0x3e	; 62
      e6a:	9b 83       	std	Y+3, r25	; 0x03
      e6c:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
      e6e:	81 e0       	ldi	r24, 0x01	; 1
      e70:	89 83       	std	Y+1, r24	; 0x01
 	/* Check Pointer */
@@ -2000,11 +2000,11 @@ TWI_ErrorStatus   TWI_enuReceiveDataByte(u8 *Copy_pu8ReceivedData)
 		*Copy_pu8ReceivedData = TWI_u8_TWDR_REG;
 	}
 	}else{
-		Local_enuErrorStatus = TWI_NullPointerError;
+		Local_enuErrorState = TWI_NullPointerError;
      e90:	88 e0       	ldi	r24, 0x08	; 8
      e92:	89 83       	std	Y+1, r24	; 0x01
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
      e94:	89 81       	ldd	r24, Y+1	; 0x01
 }
      e96:	0f 90       	pop	r0
@@ -2780,7 +2780,7 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
     133c:	cd bf       	out	0x3d, r28	; 61
     133e:	8a 83       	std	Y+2, r24	; 0x02
     1340:	6b 83       	std	Y+3, r22	; 0x03
-	u8 Local_ErrorStatus = EXTI_OK;
+	u8 Local_enuErrorState = EXTI_OK;
     1342:	81 e0       	ldi	r24, 0x01	; 1
     1344:	89 83       	std	Y+1, r24	; 0x01
 	switch(Copy_EXTIIndex){
@@ -2916,7 +2916,7 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
     1426:	02 c0       	rjmp	.+4      	; 0x142c <EXTI_enuEnable+0x102>
 		  break;
 		default:
-			Local_ErrorStatus = EXTI_INT0_NOK;
+			Local_enuErrorState = EXTI_INT0_NOK;
     1428:	82 e0       	ldi	r24, 0x02	; 2
     142a:	89 83       	std	Y+1, r24	; 0x01
 		break;
@@ -3042,7 +3042,7 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
     14f0:	02 c0       	rjmp	.+4      	; 0x14f6 <EXTI_enuEnable+0x1cc>
 			break;
 			default:
-				Local_ErrorStatus = EXTI_INT1_NOK;
+				Local_enuErrorState = EXTI_INT1_NOK;
     14f2:	83 e0       	ldi	r24, 0x03	; 3
     14f4:	89 83       	std	Y+1, r24	; 0x01
 			break;
@@ -3098,7 +3098,7 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
     1542:	02 c0       	rjmp	.+4      	; 0x1548 <EXTI_enuEnable+0x21e>
 			break;
 			default:
-				Local_ErrorStatus = EXTI_INT2_NOK;
+				Local_enuErrorState = EXTI_INT2_NOK;
     1544:	84 e0       	ldi	r24, 0x04	; 4
     1546:	89 83       	std	Y+1, r24	; 0x01
 			break;
@@ -3115,12 +3115,12 @@ EXTI_ErrorStatus EXTI_enuEnable(u8 Copy_EXTIIndex, u8 Copy_EXTIEdge){
     1556:	02 c0       	rjmp	.+4      	; 0x155c <EXTI_enuEnable+0x232>
 	break;
 	default:
-		Local_ErrorStatus = EXTI_INT_INDEX_NOK; // invalid index
+		Local_enuErrorState = EXTI_INT_INDEX_NOK; // invalid index
     1558:	85 e0       	ldi	r24, 0x05	; 5
     155a:	89 83       	std	Y+1, r24	; 0x01
 	break;
 	}
-	return Local_ErrorStatus;
+	return Local_enuErrorState;
     155c:	89 81       	ldd	r24, Y+1	; 0x01
 }
     155e:	2b 96       	adiw	r28, 0x0b	; 11
@@ -3143,7 +3143,7 @@ EXTI_ErrorStatus EXTI_enuDisable(u8 Copy_EXTIIndex){
     1578:	cd b7       	in	r28, 0x3d	; 61
     157a:	de b7       	in	r29, 0x3e	; 62
     157c:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_ErrorStatus = EXTI_OK;
+	u8 Local_enuErrorState = EXTI_OK;
     157e:	81 e0       	ldi	r24, 0x01	; 1
     1580:	89 83       	std	Y+1, r24	; 0x01
 	switch(Copy_EXTIIndex){
@@ -3200,12 +3200,12 @@ EXTI_ErrorStatus EXTI_enuDisable(u8 Copy_EXTIIndex){
     15d6:	02 c0       	rjmp	.+4      	; 0x15dc <EXTI_enuDisable+0x6c>
 	break;
 	default:
-		Local_ErrorStatus = EXTI_DISABLE_INT_NOK;
+		Local_enuErrorState = EXTI_DISABLE_INT_NOK;
     15d8:	86 e0       	ldi	r24, 0x06	; 6
     15da:	89 83       	std	Y+1, r24	; 0x01
 	break;
 	}
-	return Local_ErrorStatus;
+	return Local_enuErrorState;
     15dc:	89 81       	ldd	r24, Y+1	; 0x01
 }
     15de:	0f 90       	pop	r0
@@ -4963,7 +4963,7 @@ STP_ErrorStatus STP_enuRotate(u16 angle, u8 Copy_u8Direction){
     2088:	e6 58       	subi	r30, 0x86	; 134
     208a:	ff 4f       	sbci	r31, 0xFF	; 255
     208c:	60 83       	st	Z, r22
-	u8 Local_u8ErrorStatus = STP_OK;
+	u8 Local_enuErrorState = STP_OK;
     208e:	fe 01       	movw	r30, r28
     2090:	e9 58       	subi	r30, 0x89	; 137
     2092:	ff 4f       	sbci	r31, 0xFF	; 255
@@ -5907,7 +5907,7 @@ _delay_ms(double __ms)
     270c:	f1 f7       	brne	.-4      	; 0x270a <STP_enuRotate+0x6a8>
     270e:	9a af       	std	Y+58, r25	; 0x3a
     2710:	89 af       	std	Y+57, r24	; 0x39
-	u8 Local_u8ErrorStatus = STP_OK;
+	u8 Local_enuErrorState = STP_OK;
 	u32 numberOfSteps = (u32)((angle * 2050UL)/360);
 	numberOfSteps = numberOfSteps/4;
 	switch(Copy_u8Direction){
@@ -6626,7 +6626,7 @@ _delay_ms(double __ms)
 		}
 	break;
 	default:
-		Local_u8ErrorStatus = STP_NOK;
+		Local_enuErrorState = STP_NOK;
     2bba:	fe 01       	movw	r30, r28
     2bbc:	e9 58       	subi	r30, 0x89	; 137
     2bbe:	ff 4f       	sbci	r31, 0xFF	; 255
@@ -6634,7 +6634,7 @@ _delay_ms(double __ms)
     2bc2:	80 83       	st	Z, r24
 	break;
 	}
-	return Local_u8ErrorStatus;
+	return Local_enuErrorState;
     2bc4:	fe 01       	movw	r30, r28
     2bc6:	e9 58       	subi	r30, 0x89	; 137
     2bc8:	ff 4f       	sbci	r31, 0xFF	; 255
@@ -9082,7 +9082,7 @@ KPD_ErrorStatus KPD_enuGetKey(u8 *Copy_pu8ReturnedKey){
     3b20:	cd bf       	out	0x3d, r28	; 61
     3b22:	9d 8b       	std	Y+21, r25	; 0x15
     3b24:	8c 8b       	std	Y+20, r24	; 0x14
-	u8 Local_enuErrorStatus = KPD_OK;
+	u8 Local_enuErrorState = KPD_OK;
     3b26:	81 e0       	ldi	r24, 0x01	; 1
     3b28:	8a 8b       	std	Y+18, r24	; 0x12
 	u8 Local_u8RowsCounter, Local_u8ColumnsCounter, Local_u8ReturnedKey, Local_u8Flag = 0;
@@ -9389,11 +9389,11 @@ _delay_loop_2(uint16_t __count)
 			}
 		}
 	}else{
-		Local_enuErrorStatus = KPD_GetKeyReturnedError;
+		Local_enuErrorState = KPD_GetKeyReturnedError;
     3cf8:	82 e0       	ldi	r24, 0x02	; 2
     3cfa:	8a 8b       	std	Y+18, r24	; 0x12
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
     3cfc:	8a 89       	ldd	r24, Y+18	; 0x12
 }
     3cfe:	65 96       	adiw	r28, 0x15	; 21
@@ -9420,7 +9420,7 @@ HBRD_ErrorStatus HBRD_enuRotate(u8 Copy_u8Direction){
     3d18:	cd b7       	in	r28, 0x3d	; 61
     3d1a:	de b7       	in	r29, 0x3e	; 62
     3d1c:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_u8ErrorStatus = HBRD_OK;
+	u8 Local_enuErrorStatus = HBRD_OK;
     3d1e:	81 e0       	ldi	r24, 0x01	; 1
     3d20:	89 83       	std	Y+1, r24	; 0x01
 	switch(Copy_u8Direction){
@@ -9466,12 +9466,12 @@ HBRD_ErrorStatus HBRD_enuRotate(u8 Copy_u8Direction){
     3d6a:	02 c0       	rjmp	.+4      	; 0x3d70 <HBRD_enuRotate+0x60>
 	break;
 	default:
-		Local_u8ErrorStatus = HBRD_NOK;
+		Local_enuErrorStatus = HBRD_NOK;
     3d6c:	82 e0       	ldi	r24, 0x02	; 2
     3d6e:	89 83       	std	Y+1, r24	; 0x01
 	break;
 	}
-	return Local_u8ErrorStatus;
+	return Local_enuErrorStatus;
     3d70:	89 81       	ldd	r24, Y+1	; 0x01
 }
     3d72:	0f 90       	pop	r0
@@ -9516,7 +9516,7 @@ static u8 Private_u8ErrorStatusCheck(TWI_ErrorStatus Copy_enumErrorStatus){
     3da8:	cd b7       	in	r28, 0x3d	; 61
     3daa:	de b7       	in	r29, 0x3e	; 62
     3dac:	8a 83       	std	Y+2, r24	; 0x02
-	u8 Local_u8ErrorStatus = STD_TYPES_OK;
+	u8 Local_u8ErrorState = STD_TYPES_OK;
     3dae:	81 e0       	ldi	r24, 0x01	; 1
     3db0:	89 83       	std	Y+1, r24	; 0x01
 
@@ -9524,10 +9524,10 @@ static u8 Private_u8ErrorStatusCheck(TWI_ErrorStatus Copy_enumErrorStatus){
     3db2:	8a 81       	ldd	r24, Y+2	; 0x02
     3db4:	81 30       	cpi	r24, 0x01	; 1
     3db6:	09 f0       	breq	.+2      	; 0x3dba <Private_u8ErrorStatusCheck+0x18>
-		Local_u8ErrorStatus = STD_TYPES_NOK;
+		Local_u8ErrorState = STD_TYPES_NOK;
     3db8:	19 82       	std	Y+1, r1	; 0x01
 	}
-	return Local_u8ErrorStatus;
+	return Local_u8ErrorState;
     3dba:	89 81       	ldd	r24, Y+1	; 0x01
 }
     3dbc:	0f 90       	pop	r0
@@ -9565,7 +9565,7 @@ u8 EEPROM_u8WriteDataByte(u8 Copy_u8Data, u16 Copy_u16ByteAddress){
     3dec:	8a 8b       	std	Y+18, r24	; 0x12
     3dee:	7c 8b       	std	Y+20, r23	; 0x14
     3df0:	6b 8b       	std	Y+19, r22	; 0x13
-	u8 Local_u8ErrorStatus = STD_TYPES_OK;
+	u8 Local_u8ErrorState = STD_TYPES_OK;
     3df2:	81 e0       	ldi	r24, 0x01	; 1
     3df4:	89 8b       	std	Y+17, r24	; 0x11
 	TWI_ErrorStatus Local_enuTWIErrorStatus = TWI_OK;
@@ -9583,7 +9583,7 @@ u8 EEPROM_u8WriteDataByte(u8 Copy_u8Data, u16 Copy_u16ByteAddress){
 	Local_enuTWIErrorStatus = TWI_enuSendStartCondition();
     3e06:	0e 94 97 06 	call	0xd2e	; 0xd2e <TWI_enuSendStartCondition>
     3e0a:	88 8b       	std	Y+16, r24	; 0x10
-	Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3e0c:	88 89       	ldd	r24, Y+16	; 0x10
     3e0e:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3e12:	89 8b       	std	Y+17, r24	; 0x11
@@ -9593,7 +9593,7 @@ u8 EEPROM_u8WriteDataByte(u8 Copy_u8Data, u16 Copy_u16ByteAddress){
     3e14:	8f 85       	ldd	r24, Y+15	; 0x0f
     3e16:	0e 94 c9 06 	call	0xd92	; 0xd92 <TWI_enuSendSlaveWithWrite>
     3e1a:	88 8b       	std	Y+16, r24	; 0x10
-	Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3e1c:	88 89       	ldd	r24, Y+16	; 0x10
     3e1e:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3e22:	89 8b       	std	Y+17, r24	; 0x11
@@ -9603,7 +9603,7 @@ u8 EEPROM_u8WriteDataByte(u8 Copy_u8Data, u16 Copy_u16ByteAddress){
     3e24:	8b 89       	ldd	r24, Y+19	; 0x13
     3e26:	0e 94 17 07 	call	0xe2e	; 0xe2e <TWI_enuSendDataByte>
     3e2a:	88 8b       	std	Y+16, r24	; 0x10
-	Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3e2c:	88 89       	ldd	r24, Y+16	; 0x10
     3e2e:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3e32:	89 8b       	std	Y+17, r24	; 0x11
@@ -9613,7 +9613,7 @@ u8 EEPROM_u8WriteDataByte(u8 Copy_u8Data, u16 Copy_u16ByteAddress){
     3e34:	8a 89       	ldd	r24, Y+18	; 0x12
     3e36:	0e 94 17 07 	call	0xe2e	; 0xe2e <TWI_enuSendDataByte>
     3e3a:	88 8b       	std	Y+16, r24	; 0x10
-	Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3e3c:	88 89       	ldd	r24, Y+16	; 0x10
     3e3e:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3e42:	89 8b       	std	Y+17, r24	; 0x11
@@ -9760,7 +9760,7 @@ _delay_ms(double __ms)
     3f2a:	89 83       	std	Y+1, r24	; 0x01
 
 	_delay_ms(5);
-	return Local_u8ErrorStatus;
+	return Local_u8ErrorState;
     3f2c:	89 89       	ldd	r24, Y+17	; 0x11
 }
     3f2e:	64 96       	adiw	r28, 0x14	; 20
@@ -9789,7 +9789,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
     3f56:	8a 8b       	std	Y+18, r24	; 0x12
     3f58:	7d 8b       	std	Y+21, r23	; 0x15
     3f5a:	6c 8b       	std	Y+20, r22	; 0x14
-	u8 Local_u8ErrorStatus = STD_TYPES_OK;
+	u8 Local_u8ErrorState = STD_TYPES_OK;
     3f5c:	81 e0       	ldi	r24, 0x01	; 1
     3f5e:	89 8b       	std	Y+17, r24	; 0x11
 	TWI_ErrorStatus Local_enuTWIErrorStatus = TWI_OK;
@@ -9813,7 +9813,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
 	    Local_enuTWIErrorStatus = TWI_enuSendStartCondition();
     3f7a:	0e 94 97 06 	call	0xd2e	; 0xd2e <TWI_enuSendStartCondition>
     3f7e:	88 8b       	std	Y+16, r24	; 0x10
-	    Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	    Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3f80:	88 89       	ldd	r24, Y+16	; 0x10
     3f82:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3f86:	89 8b       	std	Y+17, r24	; 0x11
@@ -9823,7 +9823,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
     3f88:	8f 85       	ldd	r24, Y+15	; 0x0f
     3f8a:	0e 94 c9 06 	call	0xd92	; 0xd92 <TWI_enuSendSlaveWithWrite>
     3f8e:	88 8b       	std	Y+16, r24	; 0x10
-	    Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	    Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3f90:	88 89       	ldd	r24, Y+16	; 0x10
     3f92:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3f96:	89 8b       	std	Y+17, r24	; 0x11
@@ -9833,7 +9833,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
     3f98:	8c 89       	ldd	r24, Y+20	; 0x14
     3f9a:	0e 94 17 07 	call	0xe2e	; 0xe2e <TWI_enuSendDataByte>
     3f9e:	88 8b       	std	Y+16, r24	; 0x10
-	    Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	    Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3fa0:	88 89       	ldd	r24, Y+16	; 0x10
     3fa2:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3fa6:	89 8b       	std	Y+17, r24	; 0x11
@@ -9842,7 +9842,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
 	    Local_enuTWIErrorStatus = TWI_enuSendReStartCondition();
     3fa8:	0e 94 b0 06 	call	0xd60	; 0xd60 <TWI_enuSendReStartCondition>
     3fac:	88 8b       	std	Y+16, r24	; 0x10
-	    Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	    Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3fae:	88 89       	ldd	r24, Y+16	; 0x10
     3fb0:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3fb4:	89 8b       	std	Y+17, r24	; 0x11
@@ -9852,7 +9852,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
     3fb6:	8f 85       	ldd	r24, Y+15	; 0x0f
     3fb8:	0e 94 f0 06 	call	0xde0	; 0xde0 <TWI_enuSendSlaveWithRead>
     3fbc:	88 8b       	std	Y+16, r24	; 0x10
-	    Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	    Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3fbe:	88 89       	ldd	r24, Y+16	; 0x10
     3fc0:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3fc4:	89 8b       	std	Y+17, r24	; 0x11
@@ -9863,7 +9863,7 @@ u8 EEPROM_u8ReadDataByte(u8 *Copy_u8ReceivedData, u16 Copy_u16ByteAddress){
     3fc8:	9b 89       	ldd	r25, Y+19	; 0x13
     3fca:	0e 94 2f 07 	call	0xe5e	; 0xe5e <TWI_enuReceiveDataByte>
     3fce:	88 8b       	std	Y+16, r24	; 0x10
-	    Local_u8ErrorStatus = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
+	    Local_u8ErrorState = Private_u8ErrorStatusCheck(Local_enuTWIErrorStatus);
     3fd0:	88 89       	ldd	r24, Y+16	; 0x10
     3fd2:	0e 94 d1 1e 	call	0x3da2	; 0x3da2 <Private_u8ErrorStatusCheck>
     3fd6:	89 8b       	std	Y+17, r24	; 0x11
@@ -10012,10 +10012,10 @@ _delay_ms(double __ms)
 
 	    _delay_ms(5);
 	}else{
-		Local_u8ErrorStatus = STD_TYPES_NOK;
+		Local_u8ErrorState = STD_TYPES_NOK;
     40c2:	19 8a       	std	Y+17, r1	; 0x11
 	}
-	return Local_u8ErrorStatus;
+	return Local_u8ErrorState;
     40c4:	89 89       	ldd	r24, Y+17	; 0x11
 }
     40c6:	65 96       	adiw	r28, 0x15	; 21
@@ -10070,7 +10070,7 @@ int main(void){
     410a:	0e 94 ad 0f 	call	0x1f5a	; 0x1f5a <ADC_voidInit>
 	LCD_voidInit();
     410e:	0e 94 0d 16 	call	0x2c1a	; 0x2c1a <LCD_voidInit>
-	//------------------------------------------Password-------------------------------------------------------
+//-------------------------------------------------Password-------------------------------------------------------
 		//TMR_voidTMR1SetCompareMatchChannelA(1999);
 		//  void APP_LOGIN(void)
 
@@ -10689,7 +10689,7 @@ _delay_ms(double __ms)
 						// Initiate TMR1
 						TMR_voidTMR1Init();
     4500:	0e 94 29 08 	call	0x1052	; 0x1052 <TMR_voidTMR1Init>
-						//--------------------Opens the door-----------------
+//------------------------------------------------Opens the door--------------------------------------------------
 						for(u16 i = 999 ; i <=1499 ; i++)
     4504:	87 ee       	ldi	r24, 0xE7	; 231
     4506:	93 e0       	ldi	r25, 0x03	; 3
@@ -10842,7 +10842,7 @@ _delay_ms(double __ms)
 						GINT_voidGINTEnable();
 						// Initiate TMR1
 						TMR_voidTMR1Init();
-						//--------------------Opens the door-----------------
+//------------------------------------------------Opens the door--------------------------------------------------
 						for(u16 i = 999 ; i <=1499 ; i++)
     45fa:	8c a5       	ldd	r24, Y+44	; 0x2c
     45fc:	9d a5       	ldd	r25, Y+45	; 0x2d
@@ -11241,11 +11241,11 @@ _delay_ms(double __ms)
     4870:	fe ce       	rjmp	.-516    	; 0x466e <main+0x57c>
 
 00004872 <APP_voidFlagLED>:
-		        	 		}
-
 return 0;
 }
 
+
+// Function to toggle led used previously when used pointer to function in timer0 and timer1
 void APP_voidFlagLED(void){
     4872:	df 93       	push	r29
     4874:	cf 93       	push	r28

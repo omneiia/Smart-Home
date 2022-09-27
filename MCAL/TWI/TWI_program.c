@@ -39,7 +39,7 @@ u8   TWI_u8SlaveInit(u8 Copy_u8SlaveAddress)
 
 TWI_ErrorStatus   TWI_enuSendStartCondition(void)
 {
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
 		/* Send Start Condition */
 		SET_BIT(TWI_u8_TWCR_REG,5);
 		/* Clear Flag */
@@ -48,14 +48,14 @@ TWI_ErrorStatus   TWI_enuSendStartCondition(void)
 		while((TWI_u8_TWCR_REG,7) != 1);
 		/* Check ACK => REPEATED START CONDITION */
 		if((TWI_u8_TWSR_REG & 0xF8) == 0x08){
-			Local_enuErrorStatus = TWI_StartCondError;
+			Local_enuErrorState = TWI_StartCondError;
 		}
-		return Local_enuErrorStatus;
+		return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuSendReStartCondition(void)
 {
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
 	/* Send Start Condition */
 	SET_BIT(TWI_u8_TWCR_REG,5);
 	/* Clear Flag */
@@ -64,14 +64,14 @@ TWI_ErrorStatus   TWI_enuSendReStartCondition(void)
 	while((TWI_u8_TWCR_REG,7) != 1);
 	/* Check ACK => REPEATED START CONDITION */
 	if((TWI_u8_TWSR_REG & 0xF8) == 0x10){
-		Local_enuErrorStatus = TWI_RestartCondError;
+		Local_enuErrorState = TWI_RestartCondError;
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuSendSlaveWithWrite(u8 Copy_u8SlaveAddress)
 {
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
 	/* Set TWDR = SLA + W */
 	TWI_u8_TWDR_REG = Copy_u8SlaveAddress << 1 ; // since the address is the MSB 7bits
 	CLR_BIT(TWI_u8_TWDR_REG,0);
@@ -83,14 +83,14 @@ TWI_ErrorStatus   TWI_enuSendSlaveWithWrite(u8 Copy_u8SlaveAddress)
 	while((TWI_u8_TWCR_REG,7) != 1);
 	/* Check ACK */
 	if((TWI_u8_TWSR_REG & 0xF8) == 0x18){
-		Local_enuErrorStatus = TWI_SlaveWithWriteError;
+		Local_enuErrorState = TWI_SlaveWithWriteError;
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuSendSlaveWithRead(u8 Copy_u8SlaveAddress)
 {
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
 	/* Set TWDR = SLA + R */
 	TWI_u8_TWDR_REG = Copy_u8SlaveAddress << 1 ; // since the address is the MSB 7bits
 	SET_BIT(TWI_u8_TWDR_REG,0);
@@ -102,14 +102,14 @@ TWI_ErrorStatus   TWI_enuSendSlaveWithRead(u8 Copy_u8SlaveAddress)
 	while((TWI_u8_TWCR_REG,7) != 1);
 	/* Check ACK */
 	if((TWI_u8_TWSR_REG & 0xF8) == 0x40){
-		Local_enuErrorStatus = TWI_SlaveWithReadError;
+		Local_enuErrorState = TWI_SlaveWithReadError;
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus  TWI_enuSendDataByte(u8 Copy_u8SendData)
 {
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
 	/* Set TWDR = DATA */
 	TWI_u8_TWDR_REG = Copy_u8SendData;
 	/* Clear Flag */
@@ -118,14 +118,14 @@ TWI_ErrorStatus  TWI_enuSendDataByte(u8 Copy_u8SendData)
 	while((TWI_u8_TWCR_REG,7) != 1);
 	/* Check ACK */
 	if((TWI_u8_TWSR_REG & 0xF8) == 0x28){
-		Local_enuErrorStatus = TWI_TransmittedDataError;
+		Local_enuErrorState = TWI_TransmittedDataError;
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 TWI_ErrorStatus   TWI_enuReceiveDataByte(u8 *Copy_pu8ReceivedData)
 {
-	u8 Local_enuErrorStatus = TWI_OK;
+	u8 Local_enuErrorState = TWI_OK;
 	/* Check Pointer */
 	if (Copy_pu8ReceivedData != NULL)
 	{/* Clear Flag */
@@ -134,15 +134,15 @@ TWI_ErrorStatus   TWI_enuReceiveDataByte(u8 *Copy_pu8ReceivedData)
 	while((TWI_u8_TWCR_REG,7) != 1);
 	/* Check ACK */
 	if((TWI_u8_TWSR_REG & 0xF8) == 0x50){
-		Local_enuErrorStatus = TWI_ReceivedDataError;
+		Local_enuErrorState = TWI_ReceivedDataError;
 	}else{
 		/* Read Data */
 		*Copy_pu8ReceivedData = TWI_u8_TWDR_REG;
 	}
 	}else{
-		Local_enuErrorStatus = TWI_NullPointerError;
+		Local_enuErrorState = TWI_NullPointerError;
 	}
-	return Local_enuErrorStatus;
+	return Local_enuErrorState;
 }
 
 void   TWI_u8SendStopCondition(void)
