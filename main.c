@@ -149,6 +149,7 @@ int main(void){
 						GINT_voidGINTEnable();
 						// Initiate TMR1
 						TMR_voidTMR1Init();
+						//--------------------Opens the door-----------------
 						for(u16 i = 999 ; i <=1499 ; i++)
 							{
 							  TMR_voidTMR1SetCompareMatchChannelA(i);

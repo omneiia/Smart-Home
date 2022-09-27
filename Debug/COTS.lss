@@ -10689,6 +10689,7 @@ _delay_ms(double __ms)
 						// Initiate TMR1
 						TMR_voidTMR1Init();
     4500:	0e 94 29 08 	call	0x1052	; 0x1052 <TMR_voidTMR1Init>
+						//--------------------Opens the door-----------------
 						for(u16 i = 999 ; i <=1499 ; i++)
     4504:	87 ee       	ldi	r24, 0xE7	; 231
     4506:	93 e0       	ldi	r25, 0x03	; 3
@@ -10837,11 +10838,11 @@ _delay_ms(double __ms)
     45f4:	f1 f7       	brne	.-4      	; 0x45f2 <main+0x500>
     45f6:	98 8b       	std	Y+16, r25	; 0x10
     45f8:	8f 87       	std	Y+15, r24	; 0x0f
-						_delay_ms(500);//make delay for printing welcome
 						// Enable Global interrupt
 						GINT_voidGINTEnable();
 						// Initiate TMR1
 						TMR_voidTMR1Init();
+						//--------------------Opens the door-----------------
 						for(u16 i = 999 ; i <=1499 ; i++)
     45fa:	8c a5       	ldd	r24, Y+44	; 0x2c
     45fc:	9d a5       	ldd	r25, Y+45	; 0x2d
@@ -11238,8 +11239,8 @@ _delay_ms(double __ms)
     4870:	fe ce       	rjmp	.-516    	; 0x466e <main+0x57c>
 
 00004872 <APP_voidFlagLED>:
-//		_delay_ms(10000);
-//	}
+		        	 		}
+
 return 0;
 }
 
