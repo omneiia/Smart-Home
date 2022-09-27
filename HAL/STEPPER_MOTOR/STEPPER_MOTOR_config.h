@@ -1,0 +1,18 @@
+/*
+ * STEPPER_MOTOR_config.h
+ *
+ *  Created on: Sep 20, 2022
+ *      Author: DELL
+ */
+
+#ifndef HAL_STEPPER_MOTOR_STEPPER_MOTOR_CONFIG_H_
+#define HAL_STEPPER_MOTOR_STEPPER_MOTOR_CONFIG_H_
+
+#define STEPPER_MOTOR_PORT                DIO_u8_PORTA
+
+#define STEPPER_MOTOR_BLUE_COIL           DIO_u8_Pin0
+#define STEPPER_MOTOR_PINK_COIL           DIO_u8_Pin1
+#define STEPPER_MOTOR_YELLOW_COIL         DIO_u8_Pin2
+#define STEPPER_MOTOR_ORANGE_COIL         DIO_u8_Pin3
+
+#endif /* HAL_STEPPER_MOTOR_STEPPER_MOTOR_CONFIG_H_ */
