@@ -10995,7 +10995,9 @@ _delay_ms(double __ms)
 		        		LCD_voidSendData('C');//Means Celsius
     46e2:	83 e4       	ldi	r24, 0x43	; 67
     46e4:	0e 94 00 1b 	call	0x3600	; 0x3600 <LCD_voidSendData>
-			        	// Enable GINT
+
+		        		//----------------------------Air conditioner-------------------------
+		        		// Enable GINT
 			        		GINT_voidGINTEnable();
     46e8:	0e 94 79 09 	call	0x12f2	; 0x12f2 <GINT_voidGINTEnable>
 			        	// initiate TMR0

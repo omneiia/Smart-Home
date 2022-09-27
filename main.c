@@ -203,7 +203,9 @@ int main(void){
 
 		        		LCD_voidDisplayNumber(temp);//display value of temperature in LCD
 		        		LCD_voidSendData('C');//Means Celsius
-			        	// Enable GINT
+
+		        		//----------------------------Air conditioner-------------------------
+		        		// Enable GINT
 			        		GINT_voidGINTEnable();
 			        	// initiate TMR0
 			        		TMR_voidTMR0Init(TMR0_FAST_PMW_MODE);
